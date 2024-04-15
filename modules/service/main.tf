@@ -25,7 +25,6 @@ resource "aws_ecs_task_definition" "my_task" {
   ])
 }
 
-
 resource "aws_ecs_service" "nginx_service" {
   name            = "nginx-service"
   cluster         = var.cluster_id
@@ -47,7 +46,6 @@ resource "aws_ecs_service" "nginx_service" {
   }
 
   depends_on = [
-    # aws_lb_listener.nginx_listener,
     var.listener_arn,
     aws_iam_role_policy_attachment.ecs_task_execution_role_policy
   ]

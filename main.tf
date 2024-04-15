@@ -6,42 +6,24 @@ module "vpc" {
   source = "./modules/vpc"
 }
 
-
 module "ecs_cluster" {
   source      = "./modules/ecscluster"
   commom_tags = var.common_tags
 }
 
 module "service" {
-  source      = "./modules/service"
-  cluster_id = module.ecs_cluster.cluster_id
-  vpc_id = module.vpc.vpc_id
-  subnets    = module.vpc.subnets
+  source           = "./modules/service"
+  cluster_id       = module.ecs_cluster.cluster_id
+  vpc_id           = module.vpc.vpc_id
+  subnets          = module.vpc.subnets
   target_group_arn = module.load_balancer.target_group_arn
-  listener_arn = module.load_balancer.nginx_listener_arn
-  commom_tags = var.common_tags
+  listener_arn     = module.load_balancer.nginx_listener_arn
+  commom_tags      = var.common_tags
 }
 
 module "load_balancer" {
   source      = "./modules/load-balancer"
-  vpc_id = module.vpc.vpc_id
-  subnets = module.vpc.subnets
+  vpc_id      = module.vpc.vpc_id
+  subnets     = module.vpc.subnets
   commom_tags = var.common_tags
-}
-
-output "vpc_id" {
-  value = module.vpc.vpc_id
-}
-
-
-output "cluster_id" {
-  value = "Cluster ID: ${module.ecs_cluster.cluster_id}"
-}
-
-output "subnets" {
-  value = module.vpc.subnets
-}
-
-output "target_group_arn" {
-  value = module.load_balancer.target_group_arn
 }

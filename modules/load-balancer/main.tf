@@ -11,11 +11,11 @@ resource "aws_lb" "nginx_alb" {
 }
 
 resource "aws_lb_target_group" "my_tg" {
-  name        = "my-target-group"
-  port        = 80
-  protocol    = "HTTP"
-  vpc_id      = var.vpc_id
-  
+  name     = "my-target-group"
+  port     = 80
+  protocol = "HTTP"
+  vpc_id   = var.vpc_id
+
   target_type = "ip" #  "instance" if using EC2 launch type
   tags        = var.commom_tags
 
@@ -28,10 +28,6 @@ resource "aws_lb_target_group" "my_tg" {
     unhealthy_threshold = 2
     matcher             = "200"
   }
-}
-
-output "target_group_arn" {
-  value = aws_lb_target_group.my_tg.arn
 }
 
 resource "aws_security_group" "alb_web_sg" {
@@ -71,8 +67,4 @@ resource "aws_lb_listener" "nginx_listener" {
     type             = "forward"
     target_group_arn = aws_lb_target_group.my_tg.arn
   }
-}
-
-output "nginx_listener_arn" {
-  value = aws_lb_listener.nginx_listener.arn
 }
