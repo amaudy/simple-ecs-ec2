@@ -21,3 +21,19 @@ variable "target_group_arn" {
 variable "listener_arn" {
   type = string
 }
+
+variable "project_name" {
+  type = string
+}
+
+variable "environment" {
+  type = string
+}
+
+variable "region" {
+  type = string
+}
+
+variable "service_name" {
+  type = string
+}

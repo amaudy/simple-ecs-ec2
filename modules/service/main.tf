@@ -9,7 +9,7 @@ resource "aws_ecs_task_definition" "my_task" {
 
   container_definitions = jsonencode([
     {
-      name      = "my-app"
+      name      = "${var.service_name}-${var.project_name}-${var.region}-${var.environment}"
       image     = "nginx" # Example image
       cpu       = 256
       memory    = 512
@@ -26,7 +26,7 @@ resource "aws_ecs_task_definition" "my_task" {
 }
 
 resource "aws_ecs_service" "nginx_service" {
-  name            = "nginx-service"
+  name            = "${var.service_name}-${var.project_name}-${var.region}-${var.environment}"
   cluster         = var.cluster_id
   task_definition = aws_ecs_task_definition.my_task.arn
   launch_type     = "FARGATE"
@@ -41,7 +41,7 @@ resource "aws_ecs_service" "nginx_service" {
 
   load_balancer {
     target_group_arn = var.target_group_arn
-    container_name   = "my-app"
+    container_name   = "${var.service_name}-${var.project_name}-${var.region}-${var.environment}"
     container_port   = 80
   }
 

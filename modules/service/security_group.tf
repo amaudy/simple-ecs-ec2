@@ -1,5 +1,5 @@
 resource "aws_security_group" "web_service" {
-  name        = "alb-sg"
+  name        = "${var.service_name}-${var.project_name}-${var.region}-${var.environment}"
   description = "Allow all inbound traffic"
   vpc_id      = var.vpc_id
   tags        = var.commom_tags

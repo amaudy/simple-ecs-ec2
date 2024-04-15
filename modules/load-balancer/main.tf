@@ -1,5 +1,5 @@
 resource "aws_lb" "nginx_alb" {
-  name               = "my-nginx-alb"
+  name               = "${var.project_name}-${var.region}-${var.environment}"
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.alb_web_sg.id]
@@ -11,7 +11,7 @@ resource "aws_lb" "nginx_alb" {
 }
 
 resource "aws_lb_target_group" "my_tg" {
-  name     = "my-target-group"
+  name     = "${var.project_name}-${var.region}-${var.environment}"
   port     = 80
   protocol = "HTTP"
   vpc_id   = var.vpc_id
@@ -31,7 +31,7 @@ resource "aws_lb_target_group" "my_tg" {
 }
 
 resource "aws_security_group" "alb_web_sg" {
-  name        = "alb-web-sg"
+  name        = "${var.project_name}-${var.region}-${var.environment}"
   description = "Allow all inbound traffic"
   vpc_id      = var.vpc_id
   tags        = var.commom_tags
