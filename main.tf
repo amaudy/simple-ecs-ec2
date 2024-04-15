@@ -11,8 +11,11 @@ module "vpc" {
 }
 
 module "ecs_cluster" {
-  source      = "./modules/ecscluster"
-  commom_tags = var.common_tags
+  source       = "./modules/ecscluster"
+  commom_tags  = var.common_tags
+  project_name = var.project_name
+  environment  = var.environment
+  region       = var.aws_region
 }
 
 module "service" {

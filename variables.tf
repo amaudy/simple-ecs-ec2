@@ -1,3 +1,13 @@
+variable "project_name" {
+  type    = string
+  default = "poc-ecs"
+}
+
+variable "environment" {
+  type    = string
+  default = "dev"
+}
+
 variable "common_tags" {
   type = map(string)
   default = {
