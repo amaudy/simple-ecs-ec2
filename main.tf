@@ -119,12 +119,12 @@ resource "aws_lb" "nginx_alb" {
 }
 
 resource "aws_lb_target_group" "my_tg" {
-  name     = "my-target-group"
-  port     = 80
-  protocol = "HTTP"
-  vpc_id   = data.aws_vpc.default.id
+  name        = "my-target-group"
+  port        = 80
+  protocol    = "HTTP"
+  vpc_id      = data.aws_vpc.default.id
   target_type = "ip" #  "instance" if using EC2 launch type
-  tags = var.common_tags
+  tags        = var.common_tags
 
   health_check {
     interval            = 30
@@ -141,7 +141,7 @@ resource "aws_security_group" "alb_sg" {
   name        = "alb-sg"
   description = "Allow all inbound traffic"
   vpc_id      = data.aws_vpc.default.id
-  tags = var.common_tags
+  tags        = var.common_tags
 
   ingress {
     from_port   = 80
@@ -170,8 +170,8 @@ resource "aws_lb_listener" "nginx_listener" {
   port              = 80
   protocol          = "HTTP"
 
-    default_action {
-      type             = "forward"
-      target_group_arn = aws_lb_target_group.my_tg.arn
-    }
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.my_tg.arn
+  }
 }
