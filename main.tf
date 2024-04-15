@@ -23,7 +23,7 @@ module "service" {
   project_name     = var.project_name
   environment      = var.environment
   region           = var.aws_region
-  service_name     = "web-demo"
+  service_name     = var.service_name
   cluster_id       = module.ecs_cluster.cluster_id
   vpc_id           = module.vpc.vpc_id
   subnets          = module.vpc.subnets
