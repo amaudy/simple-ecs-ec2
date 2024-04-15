@@ -2,6 +2,11 @@
 
 Simple cluster for quick testing workload.
 
+- Fargate launch type.
+- AWS Load Balancer
+- Terraform local state file.
+- Use Nginx as example service
+
 ```bash
 terraform init
 terraform plan --out dev.plan
