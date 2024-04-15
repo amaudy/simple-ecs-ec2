@@ -8,7 +8,8 @@ Simple cluster for quick testing workload.
 - Use Nginx as example service
 
 ```bash
-terraform init
+rm -rf .terraform
+terraform init -backend-config=./backend/dev.hcl
 terraform plan --out dev.plan
 terraform apply "dev.plan"
 ```
