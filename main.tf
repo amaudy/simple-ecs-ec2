@@ -13,8 +13,18 @@ data "aws_subnets" "default" {
   }
 }
 
+variable "common_tags" {
+  type = map(string)
+  default = {
+    Environment = "dev",
+    Project     = "my-project"
+  }
+
+}
+
 resource "aws_ecs_cluster" "ecs_cluster" {
   name = "my-cluster"
+  tags = var.common_tags
 }
 
 resource "aws_ecs_task_definition" "my_task" {
@@ -24,6 +34,7 @@ resource "aws_ecs_task_definition" "my_task" {
   cpu                      = "256" # Adjust based on your needs
   memory                   = "512" # Adjust based on your needs
   execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
+  tags                     = var.common_tags
 
   container_definitions = jsonencode([
     {
@@ -71,6 +82,7 @@ resource "aws_ecs_service" "nginx_service" {
   cluster         = aws_ecs_cluster.ecs_cluster.id
   task_definition = aws_ecs_task_definition.my_task.arn
   launch_type     = "FARGATE"
+  tags            = var.common_tags
 
   network_configuration {
     subnets          = data.aws_subnets.default.ids
