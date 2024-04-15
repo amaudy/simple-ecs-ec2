@@ -33,11 +33,11 @@ module "service" {
 }
 
 module "load_balancer" {
-  source      = "./modules/load-balancer"
+  source       = "./modules/load-balancer"
   project_name = var.project_name
   environment  = var.environment
   region       = var.aws_region
-  vpc_id      = module.vpc.vpc_id
-  subnets     = module.vpc.subnets
-  commom_tags = var.common_tags
+  vpc_id       = module.vpc.vpc_id
+  subnets      = module.vpc.subnets
+  commom_tags  = var.common_tags
 }

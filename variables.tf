@@ -23,6 +23,6 @@ variable "aws_region" {
 }
 
 variable "service_name" {
-  type = string
+  type    = string
   default = "webapp"
 }
