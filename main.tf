@@ -78,7 +78,7 @@ resource "aws_ecs_service" "nginx_service" {
     security_groups  = []
   }
 
-  desired_count = 1
+  desired_count = 3
   depends_on = [
     aws_iam_role_policy_attachment.ecs_task_execution_role_policy
   ]
