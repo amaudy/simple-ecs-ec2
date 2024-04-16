@@ -1,13 +1,15 @@
-# Simple ECS Cluster (Fargate)
+# Simple ECS Cluster (EC2)
 
-Simple cluster for quick testing workload.
+Simple cluster for the quick testing workload.
 
-- Fargate launch type.
+Extend from https://github.com/amaudy/simple-ecs-fargate then change launch type from Fargate to EC2.
+
+- EC2 launch type.
 - AWS Load Balancer
-- Terraform local state file.
-- Use Nginx as example service
+- Terraform S3 state file.
+- Use Nginx as an example service
 
-### Before run the script
+### Before running the script
 
 
 copy `backend/dev.hcl.example` to `backend/dev.hcl` then edit to proper values.
