@@ -1,7 +1,7 @@
 resource "aws_ecs_task_definition" "my_task" {
   family                   = "service"
-  network_mode             = "awsvpc"
-  requires_compatibilities = ["FARGATE"]
+  network_mode             = "bridge"
+  requires_compatibilities = ["EC2"]
   cpu                      = "256" # Adjust based on your needs
   memory                   = "512" # Adjust based on your needs
   execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
@@ -29,15 +29,15 @@ resource "aws_ecs_service" "nginx_service" {
   name            = "${var.service_name}-${var.project_name}-${var.region}-${var.environment}"
   cluster         = var.cluster_id
   task_definition = aws_ecs_task_definition.my_task.arn
-  launch_type     = "FARGATE"
+  launch_type     = "EC2"
   desired_count   = 3
   tags            = var.commom_tags
 
-  network_configuration {
-    subnets          = var.subnets
-    assign_public_ip = true
-    security_groups  = [aws_security_group.web_service.id]
-  }
+  # network_configuration {
+  #   subnets          = var.subnets
+  #   assign_public_ip = true
+  #   security_groups  = [aws_security_group.web_service.id]
+  # }
 
   load_balancer {
     target_group_arn = var.target_group_arn

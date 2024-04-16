@@ -5,9 +5,10 @@ resource "aws_ecs_cluster" "ecs_cluster" {
 
 resource "aws_launch_configuration" "ecs_instances" {
   name          = "ecs-instances-${var.project_name}-cluster-${var.region}-${var.environment}"
-  image_id      = "ami-051f8a213df8bc089"  # Use the appropriate AMI for your region
+  image_id      = "ami-011a10ed71194b358"  # Use the appropriate AMI for your region
   instance_type = "t3a.medium"
   iam_instance_profile = aws_iam_instance_profile.ecs_instance_profile.name
+  security_groups = [aws_security_group.ecs_sg.id]
 
   user_data = <<-EOF
               #!/bin/bash
@@ -21,12 +22,13 @@ resource "aws_launch_configuration" "ecs_instances" {
 
 
 resource "aws_autoscaling_group" "ecs_asg" {
+  name                 = "${var.project_name}-cluster-${var.region}-${var.environment}"
   launch_configuration = aws_launch_configuration.ecs_instances.id
   min_size             = 3
   max_size             = 5
   desired_capacity     = 3
 
-  vpc_zone_identifier = var.subnets
+  vpc_zone_identifier = var.subnets # error so many times
 
   tag {
     key                 = "Name"

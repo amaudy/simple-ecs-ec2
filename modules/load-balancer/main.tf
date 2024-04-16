@@ -16,7 +16,7 @@ resource "aws_lb_target_group" "my_tg" {
   protocol = "HTTP"
   vpc_id   = var.vpc_id
 
-  target_type = "ip" #  "instance" if using EC2 launch type
+  target_type = "instance" #  "instance" if using EC2 launch type
   tags        = var.commom_tags
 
   health_check {

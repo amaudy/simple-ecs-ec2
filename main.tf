@@ -16,6 +16,7 @@ module "ecs_cluster" {
   project_name = var.project_name
   environment  = var.environment
   region       = var.aws_region
+  vpc_id       = module.vpc.vpc_id
   subnets = module.vpc.subnets
 }
 
