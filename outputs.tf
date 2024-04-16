@@ -10,10 +10,10 @@ output "subnets" {
   value = module.vpc.subnets
 }
 
-# output "target_group_arn" {
-#   value = module.load_balancer.target_group_arn
-# }
+output "target_group_arn" {
+  value = module.load_balancer.target_group_arn
+}
 
-# output "lb_dns" {
-#   value = module.load_balancer.lb_dns
-# }
+output "lb_dns" {
+  value = module.load_balancer.lb_dns
+}
