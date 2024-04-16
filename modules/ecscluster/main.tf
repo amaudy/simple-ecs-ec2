@@ -4,11 +4,11 @@ resource "aws_ecs_cluster" "ecs_cluster" {
 }
 
 resource "aws_launch_configuration" "ecs_instances" {
-  name          = "ecs-instances-${var.project_name}-cluster-${var.region}-${var.environment}"
-  image_id      = data.aws_ami.latest_ami.id # Use the appropriate AMI for your region
-  instance_type = "t3a.medium"
+  name                 = "ecs-instances-${var.project_name}-cluster-${var.region}-${var.environment}"
+  image_id             = data.aws_ami.latest_ami.id # Use the appropriate AMI for your region
+  instance_type        = "t3a.medium"
   iam_instance_profile = aws_iam_instance_profile.ecs_instance_profile.name
-  security_groups = [aws_security_group.ecs_sg.id]
+  security_groups      = [aws_security_group.ecs_sg.id]
 
   user_data = <<-EOF
               #!/bin/bash

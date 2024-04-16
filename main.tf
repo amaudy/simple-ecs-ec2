@@ -17,7 +17,7 @@ module "ecs_cluster" {
   environment  = var.environment
   region       = var.aws_region
   vpc_id       = module.vpc.vpc_id
-  subnets = module.vpc.subnets
+  subnets      = module.vpc.subnets
 }
 
 module "service" {
