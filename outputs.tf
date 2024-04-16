@@ -21,3 +21,7 @@ output "lb_dns" {
 output "ami_id" {
   value = "AMI ID for ECS instances: ${module.ecs_cluster.ami_id}"
 }
+
+output "aws_region" {
+  value = var.aws_region
+}
