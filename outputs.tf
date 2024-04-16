@@ -17,3 +17,7 @@ output "target_group_arn" {
 output "lb_dns" {
   value = module.load_balancer.lb_dns
 }
+
+output "ami_id" {
+  value = "AMI ID for ECS instances: ${module.ecs_cluster.ami_id}"
+}
