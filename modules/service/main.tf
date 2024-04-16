@@ -33,12 +33,6 @@ resource "aws_ecs_service" "nginx_service" {
   desired_count   = 3
   tags            = var.commom_tags
 
-  # network_configuration {
-  #   subnets          = var.subnets
-  #   assign_public_ip = true
-  #   security_groups  = [aws_security_group.web_service.id]
-  # }
-
   load_balancer {
     target_group_arn = var.target_group_arn
     container_name   = "${var.service_name}-${var.project_name}-${var.region}-${var.environment}"
