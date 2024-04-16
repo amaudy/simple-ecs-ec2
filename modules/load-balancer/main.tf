@@ -30,34 +30,6 @@ resource "aws_lb_target_group" "my_tg" {
   }
 }
 
-resource "aws_security_group" "alb_web_sg" {
-  name        = "${var.project_name}-${var.region}-${var.environment}"
-  description = "Allow all inbound traffic"
-  vpc_id      = var.vpc_id
-  tags        = var.commom_tags
-
-  ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-}
-
 resource "aws_lb_listener" "nginx_listener" {
   load_balancer_arn = aws_lb.nginx_alb.arn
   port              = 80
