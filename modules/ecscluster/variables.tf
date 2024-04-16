@@ -13,3 +13,7 @@ variable "environment" {
 variable "region" {
   type = string
 }
+
+variable "subnets" {
+  type = list(string)
+}
