@@ -37,3 +37,7 @@ variable "region" {
 variable "service_name" {
   type = string
 }
+
+variable "cloudwatch_group" {
+  type = string
+}

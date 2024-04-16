@@ -29,6 +29,7 @@ module "service" {
   cluster_id       = module.ecs_cluster.cluster_id
   vpc_id           = module.vpc.vpc_id
   subnets          = module.vpc.subnets
+  cloudwatch_group = module.ecs_cluster.cloudwathc_log_group_name
   target_group_arn = module.load_balancer.target_group_arn
   listener_arn     = module.load_balancer.nginx_listener_arn
   commom_tags      = var.common_tags
