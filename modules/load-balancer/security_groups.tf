@@ -1,6 +1,6 @@
 resource "aws_security_group" "alb_web_sg" {
   name        = "${var.project_name}-${var.region}-${var.environment}"
-  description = "Allow all inbound traffic"
+  description = "Allow all inbound traffic to the ALB ${var.project_name} ${var.environment}"
   vpc_id      = var.vpc_id
   tags        = var.commom_tags
 

@@ -1,5 +1,5 @@
 resource "aws_iam_role" "ecs_instance_role" {
-  name = "ecs_instance_role"
+  name = "ecs_instance_role-${var.project_name}-${var.environment}"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -26,6 +26,6 @@ resource "aws_iam_role_policy_attachment" "ssm_role_policy" {
 }
 
 resource "aws_iam_instance_profile" "ecs_instance_profile" {
-  name = "ecs_instance_profile"
+  name = "ecs_instance_profile-${var.project_name}-${var.environment}"
   role = aws_iam_role.ecs_instance_role.name
 }

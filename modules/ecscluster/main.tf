@@ -32,7 +32,7 @@ resource "aws_autoscaling_group" "ecs_asg" {
 
   tag {
     key                 = "Name"
-    value               = "ecs-instances"
+    value               = "ecs-instances-${var.project_name}-${var.environment}"
     propagate_at_launch = true
   }
 }
