@@ -2,6 +2,8 @@
 
 Simple cluster for the quick testing workload.
 
+Extend from https://github.com/amaudy/simple-ecs-fargate then change launch type from Fargate to EC2.
+
 - EC2 launch type.
 - AWS Load Balancer
 - Terraform S3 state file.
