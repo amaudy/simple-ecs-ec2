@@ -7,12 +7,19 @@ Simple cluster for quick testing workload.
 - Terraform local state file.
 - Use Nginx as example service
 
+### Before run the script
+
+
+copy `backend/dev.hcl.example` to `backend/dev.hcl` then edit to proper values.
+
 ```bash
 rm -rf .terraform
 terraform init -backend-config=./backend/dev.hcl
-terraform plan --out dev.plan
+terraform plan -var-file="./tfvars/dev.tfvars" --out dev.plan
 terraform apply "dev.plan"
 ```
+
+Do the same for `staging` environment. Replace `dev` with `staging`
 
 
 ### Common CLI
