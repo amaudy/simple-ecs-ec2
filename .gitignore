@@ -25,3 +25,5 @@ override.tf.json
 .terraformrc
 terraform.rc
 *.plan
+
+backend
